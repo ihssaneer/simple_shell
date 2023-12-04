@@ -17,4 +17,7 @@ char **get_arguments(char *line, char **envir);
 void free_argument(char **args);
 int _putchar(char c);
 char **path_handler(char **args, char **envir);
+char *get_path(char **env);
+char *_strcat(char *str1, const char *str2);
+
 #endif /*SSH_H*/
