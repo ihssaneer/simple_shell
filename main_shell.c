@@ -2,45 +2,29 @@
 
 /**
  * main - a UNIX command line interpreter.
+ * @av: jhf
+ * @ac: di
+ * @envir: uuhs
  * Return: void.
  */
-int main(int ac, char **av, char **envir)
+int main(int __attribute__((unused)) ac, char **av, char **envir)
 {
-	ssize_t r = 0;
-	char *line = NULL, **arguments;
-	size_t len = 0;
-	pid_t pid;
-	int status = 0, count = 0, er_code = 0;
-	(void)ac;
+	input_t ptr;
 
-	while (1)
+	initializer(&ptr, av, envir);
+	while (++ptr.count)
 	{
 		if (isatty(STDIN_FILENO)) /* intractive mode 1 // 0 non-intractive*/
-			write(1, "$> ", 3);       
-		r = getline(&line, &len, stdin);
-		if (r == -1)
+			write(1, "$> ", 3);
+		get_line(&ptr); /*brings line*/
+		get_arguments(&ptr); /*Analyse + divid + organise the line*/
+		if (ptr.args != NULL)
 		{
-			free(line);
-			return (er_code);
+			if (!check_path(&ptr))
+				fork_and_execve(&ptr);
+			free_argument(&ptr);
 		}
-		line[r - 1] = '\0'; /* replace the \n*/      
-		count++;
-		arguments = get_arguments(line, envir);
-		if (arguments != NULL)
-		{
-			er_code = check_path(av, count, arguments);
-			if (er_code != 126 || er_code != 127)
-			{
-			pid = fork();
-			if (pid == -1)
-				return (1);
-			if ((pid == 0) && (execve(arguments[0], arguments, NULL) == -1))
-				return (1);
-			else
-				wait(&status);
-			}
-			free_argument(arguments);
-		}
+		free(ptr.line);
 	}
-	return (er_code);
+	return (ptr.er_code);
 }

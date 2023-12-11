@@ -1,5 +1,6 @@
 #include "main.h"
 
+/* Function 1/5 : */
 /**
  * _putchar - write a character.
  * @c: the character to print.
@@ -9,8 +10,10 @@ int _putchar(char c)
 {
 	return (write(1, &c, 1));
 }
+
+/* Function 2/5 : */
 /**
- * _putchar - write a character.
+ * put_err - write a character.
  * @c: the character to print.
  * Return: 1 in success.
  */
@@ -18,6 +21,8 @@ int put_err(char c)
 {
 	return (write(2, &c, 1));
 }
+
+/* Function 3/5 : */
 /**
  * print_num - Prints a positive integer to stdout
  * @num: The positive integer to print
@@ -41,3 +46,5 @@ int print_num(unsigned int num)
 	}
 	return (lenth);
 }
+
+/* Function 4/5 : */
