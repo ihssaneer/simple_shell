@@ -52,5 +52,7 @@ int _putchar(char c);
 int print_num(unsigned int num);
 int put_err(char c);
 
+/* String functions :*/
+void dte_space(char *str);
 
 #endif /*SSH_H*/

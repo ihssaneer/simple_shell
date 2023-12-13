@@ -35,7 +35,11 @@ void get_line(input_t *ptr)
 		free(ptr->line);
 		exit(ptr->er_code);
 	}
-	ptr->line[r - 1] = '\0'; /* replace the \n*/
+	if (r > 0)
+		ptr->line[r - 1] = '\0'; /* replace the \n*/
+	else
+		ptr->line[0] = '\0';
+	dte_space(ptr->line);
 }
 /* Function 3/5 : */
 /**
@@ -79,27 +83,31 @@ void get_arguments(input_t *ptr)
 void path_handler(input_t *ptr)
 {
 	char *_path = NULL, *token = NULL, *_full_path = NULL;
+	size_t size_path = 0;
 
-	if (ptr->args[0][0] == '.' || ptr->args[0][0] == '/')
+	if (ptr->args[0][0] == '/' || ptr->args[0][1] == '\0')
 		return;
-	_path = malloc(strlen(get_path(ptr)) + 1);
-	strcpy(_path, get_path(ptr));
-	token = strtok(_path, ":");
-	while (token)
+	if (get_path(ptr))
 	{
-		_full_path = (char *)malloc(sizeof(char) *
-				(strlen(ptr->args[0]) + strlen(token) + 2));
-		strcpy(_full_path, token);
-		strcat(_full_path, "/"), strcat(_full_path, ptr->args[0]);
-		if (access(_full_path, F_OK) == 0)
+		_path = malloc(strlen(get_path(ptr)) + 1);
+		strcpy(_path, get_path(ptr));
+		token = strtok(_path, ":");
+		while (token)
 		{
-			free(ptr->args[0]), ptr->args[0] = strdup(_full_path), free(_full_path);
-			break;
+			size_path = strlen(ptr->args[0]) + strlen(token) + 2;
+			_full_path = (char *)malloc(sizeof(char) * size_path);
+			strcpy(_full_path, token);
+			strcat(_full_path, "/"), strcat(_full_path, ptr->args[0]);
+			if (access(_full_path, F_OK) == 0)
+			{
+				free(ptr->args[0]), ptr->args[0] = strdup(_full_path), free(_full_path);
+				break;
+			}
+			else
+				token = strtok(NULL, ":"), free(_full_path);
 		}
-		else
-			token = strtok(NULL, ":"), free(_full_path);
+		free(_path);
 	}
-	free(_path);
 }
 /* Function 5/5 : */
 /**
@@ -107,15 +115,18 @@ void path_handler(input_t *ptr)
  * @ptr: sjjssj
  * Return: hhh
  */
-char* get_path(input_t *ptr)
+char *get_path(input_t *ptr)
 {
 	int i = 0;
 
-	while (ptr->envir[i])
+	if (ptr->envir)
 	{
-		if (strncmp(ptr->envir[i], "PATH=", 5) == 0)
-			return (ptr->envir[i] + 5);
-		i++;
+		while (ptr->envir[i])
+		{
+			if (strncmp(ptr->envir[i], "PATH=", 5) == 0)
+				return (ptr->envir[i] + 5);
+			i++;
+		}
 	}
 	return (NULL);
 }

@@ -17,12 +17,15 @@ int main(int __attribute__((unused)) ac, char **av, char **envir)
 		if (isatty(STDIN_FILENO)) /* intractive mode 1 // 0 non-intractive*/
 			write(1, "$> ", 3);
 		get_line(&ptr); /*brings line*/
-		get_arguments(&ptr); /*Analyse + divid + organise the line*/
-		if (ptr.args != NULL)
+		if (strlen(ptr.line))
 		{
-			if (!check_path(&ptr))
-				fork_and_execve(&ptr);
-			free_argument(&ptr);
+			get_arguments(&ptr); /*Analyse + divid + organise the line*/
+			if (ptr.args != NULL)
+			{
+				if (!check_path(&ptr))
+					fork_and_execve(&ptr);
+				free_argument(&ptr);
+			}
 		}
 		free(ptr.line);
 	}

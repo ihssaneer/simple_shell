@@ -8,7 +8,8 @@
  */
 int check_path(input_t *ptr)
 {
-	if (access(ptr->args[0], F_OK) == -1)
+	if (!((ptr->args[0][0] == '.' || ptr->args[0][0] == '/') &&
+			access(ptr->args[0], F_OK) == 0))
 	{
 		ptr->er_code = 127;
 		print_error(ptr);
