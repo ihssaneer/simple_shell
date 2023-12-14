@@ -1,16 +1,16 @@
 #include "main.h"
-
-void dte_space(char *str)
+/**
+ * space_remover - shs
+ * @str: ijq
+ * Return: void.
+*/
+void space_remover(char *str)
 {
 	int i = 0, j = 0;
 
 	while ((*(str + i) == ' ' || *(str + i) == '\t') && *(str + i))
 		i++;
-	while (*(str + i) && *(str + j))
-	{
+	for (; *(str + i) && *(str + j); i++, j++)
 		*(str + j) = *(str + i);
-		i++;
-		j++;
-	}
 	*(str + j) = '\0';
 }

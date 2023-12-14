@@ -20,12 +20,12 @@ int main(int __attribute__((unused)) ac, char **av, char **envir)
 		if (strlen(ptr.line))
 		{
 			get_arguments(&ptr); /*Analyse + divid + organise the line*/
-			if (ptr.args != NULL)
+			if (check_exit_env(&ptr))
 			{
 				if (!check_path(&ptr))
 					fork_and_execve(&ptr);
-				free_argument(&ptr);
 			}
+			free_argument(&ptr);
 		}
 		free(ptr.line);
 	}

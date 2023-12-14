@@ -11,14 +11,12 @@ int check_path(input_t *ptr)
 	if (!((ptr->args[0][0] == '.' || ptr->args[0][0] == '/') &&
 			access(ptr->args[0], F_OK) == 0))
 	{
-		ptr->er_code = 127;
-		print_error(ptr);
+		ptr->er_code = 127, print_error(ptr);
 		return (1);
 	}
 	else if (access(ptr->args[0], X_OK) == -1)
 	{
-		ptr->er_code = 126;
-		print_error(ptr);
+		ptr->er_code = 126, print_error(ptr);
 		return (1);
 	}
 	return (0);
@@ -78,4 +76,26 @@ void print_error(input_t *ptr)
 		write(2, ": not found\n", 12);
 	if (ptr->er_code == 126)
 		write(2, ": Permission denied\n", 20);
+}
+/* Function 5/5 : */
+int check_exit_env(input_t *ptr)
+{
+	int i = 0;
+
+	if (strncmp(ptr->line, "env", 3) == 0)
+	{
+		for (; ptr->envir[i]; i++)
+		{
+			write(1, ptr->envir[i], strlen(ptr->envir[i]));
+			_putchar('\n');
+		}
+		return (0);
+	}
+	if (strncmp(ptr->line, "exit", 4) == 0)
+	{
+		free_argument(ptr);
+		free(ptr->line);
+		exit(ptr->er_code);
+	}
+	return (1);
 }

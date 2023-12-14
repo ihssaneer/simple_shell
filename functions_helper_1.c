@@ -39,7 +39,7 @@ void get_line(input_t *ptr)
 		ptr->line[r - 1] = '\0'; /* replace the \n*/
 	else
 		ptr->line[0] = '\0';
-	dte_space(ptr->line);
+	space_remover(ptr->line);
 }
 /* Function 3/5 : */
 /**
@@ -55,10 +55,7 @@ void get_arguments(input_t *ptr)
 	_line = strdup(ptr->line);
 	word = strtok(_line, " \t");
 	while (word)
-	{
-		i++;
-		word = strtok(NULL, " \t");
-	}
+		i++, word = strtok(NULL, " \t");
 	free(_line);
 	if (i == 0)
 		return;
@@ -67,8 +64,7 @@ void get_arguments(input_t *ptr)
 	word = strtok(ptr->line, " \t");
 	while (word)
 	{
-		ptr->args[i] = strdup(word);
-		i++;
+		ptr->args[i] = strdup(word), i++;
 		word = strtok(NULL, " \t");
 	}
 	ptr->args[i] = NULL;

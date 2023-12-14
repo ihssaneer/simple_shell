@@ -46,5 +46,3 @@ int print_num(unsigned int num)
 	}
 	return (lenth);
 }
-
-/* Function 4/5 : */

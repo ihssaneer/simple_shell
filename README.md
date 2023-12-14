@@ -1,2 +1,2 @@
-simple shell readme file 
+Simple shell readme file
 Our first project

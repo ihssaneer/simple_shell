@@ -40,19 +40,19 @@ void initializer(input_t *ptr, char **av, char **envir);
 void get_line(input_t *ptr);
 void get_arguments(input_t *ptr);
 void path_handler(input_t *ptr);
-char* get_path(input_t *ptr);
+char *get_path(input_t *ptr);
 int check_path(input_t *ptr);
 int fork_and_execve(input_t *ptr);
 void free_argument(input_t *ptr);
-void print_error(input_t *ptr);
-
+int check_exit_env(input_t *ptr);
 
 /* print functions : */
 int _putchar(char c);
 int print_num(unsigned int num);
 int put_err(char c);
+void print_error(input_t *ptr);
 
 /* String functions :*/
-void dte_space(char *str);
+void space_remover(char *str);
 
 #endif /*SSH_H*/
