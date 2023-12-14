@@ -20,9 +20,9 @@ void initializer(input_t *ptr, char **av, char **envir)
 
 /* Function 2/5 : */
 /**
- * get_line - jdfhhfjsh
- * @ptr: jhf
- * Return: jhhfgh
+ * get_line - function that get and handle line. 
+ * @ptr: line.
+ * Return: Void.
  */
 void get_line(input_t *ptr)
 {
@@ -43,9 +43,9 @@ void get_line(input_t *ptr)
 }
 /* Function 3/5 : */
 /**
- * get_arguments - eee
- * @ptr: jhf
- * Return: ddddd
+ * get_arguments - function that handle flags of commande line.
+ * @ptr: line.
+ * Return: Void.
  */
 void get_arguments(input_t *ptr)
 {
@@ -72,9 +72,9 @@ void get_arguments(input_t *ptr)
 }
 /* Function 4/5 : */
 /**
- * path_handler - jgxk
- * @ptr: kjdf
- * Return: jfjhv
+ * path_handler - function that handle the paths of commandes.
+ * @ptr: line.
+ * Return: Void.
  */
 void path_handler(input_t *ptr)
 {
@@ -107,9 +107,9 @@ void path_handler(input_t *ptr)
 }
 /* Function 5/5 : */
 /**
- * get_path - hdhddh
- * @ptr: sjjssj
- * Return: hhh
+ * get_path - function that get the full path from envierment variables.
+ * @ptr: line.
+ * Return: the full path in success, and NULL in failure.
  */
 char *get_path(input_t *ptr)
 {
