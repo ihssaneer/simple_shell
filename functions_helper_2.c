@@ -2,7 +2,7 @@
 
 /* Function 1/5 : */
 /**
- * check_path - kjh
+ * check_path - function to verified the path.
  * @ptr: jdsjii
  * Return: 1 on success and 0 on failure.
  */
@@ -23,9 +23,9 @@ int check_path(input_t *ptr)
 }
 /* Function 2/5 : */
 /**
- * fork_and_execve - kjh
- * @ptr: jdsjii
- * Return: void
+ * fork_and_execve - function that creat the process child and exute the commande.
+ * @ptr: the commande line.
+ * Return: 1 in successe, 0 in in error.
  */
 int fork_and_execve(input_t *ptr)
 {
@@ -43,8 +43,9 @@ int fork_and_execve(input_t *ptr)
 
 /* Function 3/5 : */
 /**
- * free_argument - eee
- * @ptr: ddd
+ * free_argument - function use it to free the argument.
+ * @ptr: line to free.
+ * Return: Void.
  */
 void free_argument(input_t *ptr)
 {
@@ -61,8 +62,8 @@ void free_argument(input_t *ptr)
 
 /* Function 4/5 : */
 /**
- * print_error - kjh
- * @ptr: ddd
+ * print_error - function that print the error
+ * @ptr: line
  * Return: void.
  */
 void print_error(input_t *ptr)
@@ -79,9 +80,9 @@ void print_error(input_t *ptr)
 }
 /* Function 5/5 : */
 /**
- * check_exit_env - kjh
- * @ptr: ddd
- * Return: void.
+ * check_exit_env - function that print the envirement of variables, and excute the exit commande.
+ * @ptr: line.
+ * Return: 0 in successe, amd 1 in failure.
  */
 int check_exit_env(input_t *ptr)
 {
