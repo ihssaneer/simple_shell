@@ -78,6 +78,11 @@ void print_error(input_t *ptr)
 		write(2, ": Permission denied\n", 20);
 }
 /* Function 5/5 : */
+/**
+ * check_exit_env - kjh
+ * @ptr: ddd
+ * Return: void.
+ */
 int check_exit_env(input_t *ptr)
 {
 	int i = 0;
