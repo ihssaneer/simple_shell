@@ -1,7 +1,7 @@
 #include "main.h"
 /**
- * space_remover - shs
- * @str: ijq
+ * space_remover - function that delet the spaces from line.
+ * @str: line.
  * Return: void.
 */
 void space_remover(char *str)
